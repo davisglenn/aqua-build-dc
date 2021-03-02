@@ -1,0 +1,81 @@
+pipeline {
+
+    agent any
+
+    environment {
+        PIPELINE_REPO = "https://github.com/davisglenn/aqua-build-dc.git"
+        PIPELINE_BRANCH = "master"
+        PIPELINE_WORKSPACE = "/var/lib/jenkins/workspace"
+        }
+
+stages {
+/*
+	stage('Pull from Git') {
+    	  steps {
+
+        	echo "Pull from Git"
+        	checkout poll: false,
+                	scm: [$class: 'GitSCM',
+                      	branches: [[name: "${PIPELINE_BRANCH}"]],
+                      	doGenerateSubmoduleConfigurations: false,
+                      	extensions: [[$class: 'ScmName', name: 'Pipeline'],
+                                   	[$class: 'RelativeTargetDirectory', relativeTargetDir: "${PIPELINE_WORKSPACE}"],
+                                   	[$class: 'CleanBeforeCheckout']],
+                      	submoduleCfg: [],
+                      	userRemoteConfigs: [[credentialsId: 'vLabDemo', url: "${PIPELINE_REPO}"]]]
+    	  }
+
+	}
+*/
+      stage('Decommission Server') {
+          steps {
+              script{
+                  rc = sh (
+                          script:  'echo Decommission Server'
+                  )
+                  echo "The command line return code is: ${rc}"
+              }
+          }
+      }
+      stage('Linux RAMdisk Running') {
+          steps {
+              script{
+                  rc = sh (
+                          script:  'echo Linux RAMdisk Running'
+                  )
+                  echo "The command line return code is: ${rc}"
+              }
+          }
+      }
+      stage('iDRAC Firmware Updated') {
+          steps {
+              script{
+                  rc = sh (
+                          script:  'echo iDRAC Firmware Updated'
+                  )
+                  echo "The command line return code is: ${rc}"
+              }
+          }
+      }
+      stage('BIOS Firmware Updated') {
+          steps {
+              script{
+                  rc = sh (
+                          script:  'echo BIOS Firmware Updated'
+                  )
+                  echo "The command line return code is: ${rc}"
+              }
+          }
+      }
+      stage('iDRAC Config Updated') {
+          steps {
+              script{
+                  rc = sh (
+                          script:  'echo iDRAC Config Updated'
+                  )
+                  echo "The command line return code is: ${rc}"
+              }
+          }
+      }
+  }
+}
