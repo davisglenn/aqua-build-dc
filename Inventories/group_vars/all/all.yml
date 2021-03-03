@@ -3,7 +3,6 @@ debug: 0
 ansible_python_interpreter: /usr/bin/python3
 ansible_ssh_user: gdavis
 
-
 myuser: gdavis
 domain: aqua.lab         # Domain Name to use in your Environment
 net_prefix: 192.168.5        # Your Network Subnet to use

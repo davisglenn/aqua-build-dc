@@ -8,6 +8,7 @@ pipeline {
         PIPELINE_WORKSPACE = "/var/lib/jenkins/workspace/Build_Domain_Controller"
         }
 
+
 stages {
 
       stage('Install Docker') {
