@@ -42,7 +42,7 @@ stages {
           steps {
               script{
                   rc = sh (
-                          script:  'trivy client --clear-cache=false --exit-code=1 --severity=CRITICAL --remote http://192.168.5.9:9999 cloudwattfr/ntpserver' 
+                          script:  'trivy client --clear-cache=false --exit-code=1 --severity=CRITICAL --remote http://192.168.5.9:9999 alpine:3.10' 
                   )
               }
           }
