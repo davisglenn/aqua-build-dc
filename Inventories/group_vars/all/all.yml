@@ -1,7 +1,8 @@
 ---
 debug: 0
 ansible_python_interpreter: /usr/bin/python3
-ansible_ssh_user: gdavis
+ansible_user: gdavis
+ansible_ssh_pass: frankie
 
 myuser: gdavis
 domain: aqua.lab         # Domain Name to use in your Environment
