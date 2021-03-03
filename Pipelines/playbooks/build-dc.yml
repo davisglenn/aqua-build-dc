@@ -4,6 +4,7 @@
   gather_facts: false
   #connection: local
   become: yes
+  become_user: gdavis
   roles: 
   - docker
 #  - dnsmasq
