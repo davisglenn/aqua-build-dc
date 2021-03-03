@@ -9,69 +9,42 @@ pipeline {
         }
 
 stages {
-/*
-	stage('Pull from Git') {
-    	  steps {
 
-        	echo "Pull from Git"
-        	checkout poll: false,
-                	scm: [$class: 'GitSCM',
-                      	branches: [[name: "${PIPELINE_BRANCH}"]],
-                      	doGenerateSubmoduleConfigurations: false,
-                      	extensions: [[$class: 'ScmName', name: 'Pipeline'],
-                                   	[$class: 'RelativeTargetDirectory', relativeTargetDir: "${PIPELINE_WORKSPACE}"],
-                                   	[$class: 'CleanBeforeCheckout']],
-                      	submoduleCfg: [],
-                      	userRemoteConfigs: [[credentialsId: 'vLabDemo', url: "${PIPELINE_REPO}"]]]
-    	  }
-
-	}
-*/
-      stage('Decommission Server') {
+      stage('Install Docker') {
           steps {
               script{
                   rc = sh (
-                          script:  'echo Decommission Server'
+                          script:  'echo Install Docker'
                   )
                   echo "The command line return code is: ${rc}"
               }
           }
       }
-      stage('Linux RAMdisk Running') {
+      stage('Create DNSmasq container') {
           steps {
               script{
                   rc = sh (
-                          script:  'echo Linux RAMdisk Running'
+                          script:  'echo Create DNSmasq container'
                   )
                   echo "The command line return code is: ${rc}"
               }
           }
       }
-      stage('iDRAC Firmware Updated') {
+      stage('Create NTP container') {
           steps {
               script{
                   rc = sh (
-                          script:  'echo iDRAC Firmware Updated'
+                          script:  'echo Create NTP container'
                   )
                   echo "The command line return code is: ${rc}"
               }
           }
       }
-      stage('BIOS Firmware Updated') {
+      stage('Create LDAP container') {
           steps {
               script{
                   rc = sh (
-                          script:  'echo BIOS Firmware Updated'
-                  )
-                  echo "The command line return code is: ${rc}"
-              }
-          }
-      }
-      stage('iDRAC Config Updated') {
-          steps {
-              script{
-                  rc = sh (
-                          script:  'echo iDRAC Config Updated'
+                          script:  'echo Create LDAP container'
                   )
                   echo "The command line return code is: ${rc}"
               }
