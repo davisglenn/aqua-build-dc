@@ -14,7 +14,7 @@ stages {
           steps {
               script{
                   rc = sh (
-                          script:  'echo Install Docker'
+                          script:  'ansible-playbook --version'
                   )
                   echo "The command line return code is: ${rc}"
               }
