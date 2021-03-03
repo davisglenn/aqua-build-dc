@@ -14,7 +14,7 @@ stages {
           steps {
               script{
                   rc = sh (
-                          script:  'ansible-playbook -i ' + params.PIPELINE_WORKSPACE + '/Inventories ' + params.PIPELINE_WORKSPACE + '/Pipelines/playbooks/build-dc.yml --tags=install-docker' 
+                          script:  'ansible-playbook -i ' + $PIPELINE_WORKSPACE + '/Inventories ' + $PIPELINE_WORKSPACE + '/Pipelines/playbooks/build-dc.yml --tags=install-docker' 
                   )
                   echo "The command line return code is: ${rc}"
               }
