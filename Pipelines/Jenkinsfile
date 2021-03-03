@@ -5,7 +5,7 @@ pipeline {
     environment {
         PIPELINE_REPO = "https://github.com/davisglenn/aqua-build-dc.git"
         PIPELINE_BRANCH = "main"
-        PIPELINE_WORKSPACE = "/var/lib/jenkins/workspace"
+        PIPELINE_WORKSPACE = "/var/lib/jenkins/workspace/Build\ Domain\ Controller"
         }
 
 stages {
