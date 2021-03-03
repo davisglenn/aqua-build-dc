@@ -20,11 +20,29 @@ stages {
               }
           }
       }
+      stage('Scan DNSmasq for Vulnerabilites') {
+          steps {
+              script{
+                  rc = sh (
+                          script:  'trivy client --clear-cache=false --exit-code=1 --severity=CRITICAL --remote http://192.168.5.9:9999 jpillora/dnsmasq' 
+                  )
+              }
+          }
+      }
       stage('Create DNSmasq container') {
           steps {
               script{
                   rc = sh (
                           script:  'ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/build-dc.yml --tags=dnsmasq' 
+                  )
+              }
+          }
+      }
+      stage('Scan NTP for Vulnerabilites') {
+          steps {
+              script{
+                  rc = sh (
+                          script:  'trivy client --clear-cache=false --exit-code=1 --severity=CRITICAL --remote http://192.168.5.9:9999 cloudwattfr/ntpserver' 
                   )
               }
           }
@@ -38,11 +56,20 @@ stages {
               }
           }
       }
+      stage('Scan LDAP for Vulnerabilites') {
+          steps {
+              script{
+                  rc = sh (
+                          script:  'trivy client --clear-cache=false --exit-code=1 --severity=CRITICAL --remote http://192.168.5.9:9999 bitnami/openldap' 
+                  )
+              }
+          }
+      }
       stage('Create LDAP container') {
           steps {
               script{
                   rc = sh (
-                          script:  'ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/build-dc.yml --tags=ldap' 
+                          script:  'ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/build-dc.yml --tags=ldap'
                   )
               }
           }
