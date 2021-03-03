@@ -14,7 +14,7 @@ stages {
           steps {
               script{
                   rc = sh (
-                          script:  'ansible-playbook --version'
+                          script:  ' ansible-playbook -i ../../Inventories/ build-dc.yml --tags=install-docker'
                   )
                   echo "The command line return code is: ${rc}"
               }
