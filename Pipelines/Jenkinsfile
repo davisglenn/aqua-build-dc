@@ -43,7 +43,7 @@ stages {
               script{
                   catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                     sh (
-                          script:  'trivy client --clear-cache=false --exit-code=1 --severity=CRITICAL --remote http://192.168.5.9:9999 jenkins/jenkins:lts' 
+                          script:  'ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/trivy-scan -e "dockername=ntp"' 
                     )
                   }
               }
