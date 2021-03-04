@@ -1,0 +1,13 @@
+---
+- name: Scan the docker image using trivy
+  hosts: dc
+  gather_facts: false
+  connection: local
+#  become: yes
+  tasks:
+    - name: trivy scan "{{ image[dockername] }}" 
+      shell: "trivy client --clear-cache=false --exit-code=1 --severity=CRITICAL --remote http://192.168.5.9:9999 {{ image[dockername] }}"
+      register: image_output
+
+    - debug:
+        msg: "{{ image_output }}"
