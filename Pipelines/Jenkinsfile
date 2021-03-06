@@ -53,7 +53,7 @@ stages {
           steps {
               script{
                   rc = sh (
-                          script: 'echo $stageResult'
+                          script: 'echo $stageResult';
                           script:  'ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/build-dc.yml --tags=ntp' 
                   )
               }
