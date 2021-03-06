@@ -58,7 +58,6 @@ stages {
                         script{
                           catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                                 if (env.FAILED == 'true') {
-                                  println("build" + buildResult)
                                   exit 1
                                 }
                                 sh ( 
