@@ -42,9 +42,7 @@ stages {
           steps {
               script{
                   catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
-                     sh ( 
-                        ansible-playbook -i "${PIPELINE_WORKSPACE}"/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/trivy-scan.yml -e "dockername=ntp"
-                     )
+                        ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/trivy-scan.yml -e "dockername=ntp"
                   }
               }
           }
