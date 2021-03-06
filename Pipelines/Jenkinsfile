@@ -6,7 +6,7 @@ pipeline {
         PIPELINE_REPO = "https://github.com/davisglenn/aqua-build-dc.git"
         PIPELINE_BRANCH = "main"
         PIPELINE_WORKSPACE = "/var/lib/jenkins/workspace/Build_Domain_Controller"
-        FAILED = "false"
+        FAILED = "true"
         }
 
 
@@ -48,9 +48,11 @@ stages {
                                 sh (
                                     script: 'ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/trivy-scan.yml -e "dockername=ntp"'
                                 )
-                                env.FAILED = 'true'
                           }
                         }
+                    }
+                    environment { 
+                            FAILED= 'false'
                     }
                 }
                 stage('Create NTP container') {
