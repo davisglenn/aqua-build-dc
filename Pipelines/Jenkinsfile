@@ -39,23 +39,25 @@ stages {
           }
       }
       stage('Deploy NTP Server') {
-        stages {
-            stage('Scan NTP for Vulnerabilites') {
-                steps {
-                    script{
-                            sh (
-                                script: 'ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/trivy-scan.yml -e "dockername=ntp"'
-                            )
+        catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+            stages {
+                stage('Scan NTP for Vulnerabilites') {
+                    steps {
+                        script{
+                                sh (
+                                    script: 'ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/trivy-scan.yml -e "dockername=ntp"'
+                                )
+                        }
                     }
                 }
-            }
-            stage('Create NTP container') {
-                steps {
-                    script{
-                        sh 'printenv'
-                        sh ( 
-                            script: 'ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/build-dc.yml --tags=ntp'
-                        )
+                stage('Create NTP container') {
+                    steps {
+                        script{
+                            sh 'printenv'
+                            sh ( 
+                                script: 'ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/build-dc.yml --tags=ntp'
+                            )
+                        }
                     }
                 }
             }
