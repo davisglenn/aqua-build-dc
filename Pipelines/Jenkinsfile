@@ -58,7 +58,7 @@ stages {
                         script{
                           catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                                 if (env.FAILED == 'true') {
-                                  exit 1
+                                  sh 'exit 1'
                                 }
                                 sh ( 
                                     script: 'ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/build-dc.yml --tags=ntp'
