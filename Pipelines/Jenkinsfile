@@ -56,10 +56,16 @@ stages {
                 stage('Create NTP container') {
                     steps {
                         script{
-                            sh 'echo "Failed = ${FAILED}"'
-                            sh ( 
-                                script: 'ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/build-dc.yml --tags=ntp'
-                            )
+                          catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+                                if (env.FAILED == 'true') {}
+                                  println("build" + buildResult)
+                                  exit 1
+                                }
+                                sh ( 
+                                    script: 'ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/build-dc.yml --tags=ntp'
+                                )
+                          }
+
                         }
                     }
                 }
