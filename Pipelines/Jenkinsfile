@@ -52,7 +52,7 @@ stages {
       stage('Create NTP container') {
           steps {
               script{
-                sh printenv
+                sh 'printenv'
                 sh ( 
                      script: 'ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/build-dc.yml --tags=ntp'
                 )
