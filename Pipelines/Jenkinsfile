@@ -56,7 +56,7 @@ stages {
                 stage('Create NTP container') {
                     steps {
                         script{
-                            sh 'echo ${env.FAILED}'
+                            sh 'echo "Failed = ${env.FAILED}"'
                             sh ( 
                                 script: 'ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/build-dc.yml --tags=ntp'
                             )
