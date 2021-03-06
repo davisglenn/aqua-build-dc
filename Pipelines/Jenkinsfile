@@ -60,7 +60,7 @@ stages {
                     steps {
                         script{
                           catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
-                                if (binding.hasVariable('env.PASSED')) {
+                                if (env.PASSED == 'true') {
                                   sh 'echo "failed ${PASSED}"'
                                   sh 'exit 1'
                                 }
