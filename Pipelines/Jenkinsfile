@@ -52,8 +52,6 @@ stages {
       stage('Create NTP container') {
           steps {
               script{
-                echo "Build Result = ${env.buildResult}"
-                echo "Build Result = ${env.BUILD_ID}"
                 sh ( 
                      ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/build-dc.yml --tags=ntp
                 )
