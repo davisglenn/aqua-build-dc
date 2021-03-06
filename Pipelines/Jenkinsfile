@@ -46,19 +46,16 @@ stages {
                           ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/trivy-scan.yml -e "dockername=ntp"
                      )
                   }
-                  echo "bR: ${buildResult}"
-                  echo "sR: ${stageResult}"
-
               }
           }
       }
       stage('Create NTP container') {
           steps {
               script{
-                sh ( '''
-                     echo "Build Result = ${buildResult}"
+                echo "Build Result = ${env.buildResult}"
+                echo "Build Result = ${env.BUILD_ID}"
+                sh ( 
                      ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/build-dc.yml --tags=ntp
-                     '''
                 )
               }
           }
