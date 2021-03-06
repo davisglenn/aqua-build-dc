@@ -49,10 +49,8 @@ stages {
                                     script: 'ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/trivy-scan.yml -e "dockername=ntp"'
                                 )
                           }
+                          env.FAILED = 'false'
                         }
-                    }
-                    environment { 
-                            FAILED= 'false'
                     }
                 }
                 stage('Create NTP container') {
