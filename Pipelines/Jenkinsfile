@@ -54,7 +54,7 @@ stages {
           steps {
               script{
                 sh ( '''
-                     echo "Build Result = $buildResult"
+                     echo "Build Result = ${buildResult}"
                      ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/build-dc.yml --tags=ntp
                      '''
                 )
