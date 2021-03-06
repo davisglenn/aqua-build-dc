@@ -1,0 +1,53 @@
+pipeline {
+
+    agent any
+
+    environment {
+        PIPELINE_REPO = "https://github.com/davisglenn/aqua-build-dc.git"
+        PIPELINE_BRANCH = "main"
+        PIPELINE_WORKSPACE = "/var/lib/jenkins/workspace/Build_Domain_Controller"
+        FAILED = "true"
+        }
+
+
+stages {
+
+      stage('Install Docker') {
+          steps {
+              script{
+                  rc = sh (
+                          script:  'ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/build-dc.yml --tags=install-docker' 
+                  )
+              }
+          }
+      }
+      stage('Create DNSmasq container') {
+          steps {
+              script{
+                    sh 'echo ${FAILED}'
+                  rc = sh (
+                          script:  'ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/build-dc.yml --tags=dnsmasq' 
+                  )
+              }
+          }
+      }
+      stage('Create NTP container') {
+          steps {
+              script{
+                      sh ( 
+                          script: 'ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/build-dc.yml --tags=ntp'
+                      )
+              }
+          }
+      }
+      stage('Create LDAP container') {
+          steps {
+              script{
+                  rc = sh (
+                          script:  'ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/build-dc.yml --tags=ldap'
+                  )
+              }
+          }
+      }
+  }
+}
