@@ -48,13 +48,16 @@ stages {
                      )
                   }
               }
+              echo "bR: ${buildResult}"
+              echo "sR: ${stageResult}"
+              }
           }
       }
       stage('Create NTP container') {
           steps {
               script{
                 sh ( '''
-                     echo "Build Result = ${currentBuild.result}"
+                     echo "Build Result = ${buildResult}"
                      ansible-playbook -i ${PIPELINE_WORKSPACE}/Inventories ${PIPELINE_WORKSPACE}/Pipelines/playbooks/build-dc.yml --tags=ntp
                      '''
                 )
