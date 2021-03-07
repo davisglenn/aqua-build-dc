@@ -30,6 +30,13 @@ ldap_admin_password: VMware1!
 ldap_users: user01,user02
 ldap_passwords: password1,password2
 
+#trivy
+#severity: "CRITICAL"
+severity: "CRITICAL,HIGH"
+# severity: "CRITICAL,HIGH,MEDIUM"
+# severity: "CRITICAL,HIGH,MEDIUM,LOW"
+# severity: "CRITICAL,HIGH,MEDIUM,LOW,UNKOWN"
+
 image: 
   dnsmasq: "jpillora/dnsmasq:1.1.0"
 #  ntp: "cloudwattfr/ntpserver"

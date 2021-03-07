@@ -6,7 +6,7 @@
 #  become: yes
   tasks:
     - name: trivy scan "{{ image[dockername] }}" 
-      shell: "trivy client --clear-cache=false --exit-code=1 --severity=CRITICAL --remote http://192.168.5.9:9999 {{ image[dockername] }}"
+      shell: "trivy client --clear-cache=false --exit-code=1 --severity={{ severity }} --remote http://192.168.5.9:9999 {{ image[dockername] }}"
       register: image_output
 
     - debug:
