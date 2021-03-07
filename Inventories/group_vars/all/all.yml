@@ -32,6 +32,7 @@ ldap_passwords: password1,password2
 
 image: 
   dnsmasq: "jpillora/dnsmasq:1.1.0"
-  ntp: "cloudwattfr/ntpserver"
+#  ntp: "cloudwattfr/ntpserver"
+  ntp: "jenkins/jenkins:lts"
 #  ntp: "jenkins/jenkins:2.263.4-lts-centos7"
   ldap: "bitnami/openldap:2.4.57"
