@@ -50,7 +50,6 @@ stages {
                         )
                         env.PASSED = 'true'
                     }
-                    println('PASSED =' + env.PASSED)
                 }
             }
         }
