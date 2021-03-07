@@ -39,7 +39,7 @@ severity: "CRITICAL,HIGH"
 
 image: 
   dnsmasq: "jpillora/dnsmasq:1.1.0"
-#  ntp: "cloudwattfr/ntpserver"
-  ntp: "jenkins/jenkins:lts"
-#  ntp: "jenkins/jenkins:2.263.4-lts-centos7"
+  ntp: "cloudwattfr/ntpserver"
+#  ntp: "alpine:3.10.5"
+#  ntp: "alpine:3.10.6"
   ldap: "bitnami/openldap:2.4.57"
