@@ -31,15 +31,15 @@ ldap_users: user01,user02
 ldap_passwords: password1,password2
 
 #trivy
-#severity: "CRITICAL"
-severity: "CRITICAL,HIGH"
+severity: "CRITICAL"
+#severity: "CRITICAL,HIGH"
 # severity: "CRITICAL,HIGH,MEDIUM"
 # severity: "CRITICAL,HIGH,MEDIUM,LOW"
 # severity: "CRITICAL,HIGH,MEDIUM,LOW,UNKOWN"
 
 image: 
   dnsmasq: "jpillora/dnsmasq:1.1.0"
-#  ntp: "cloudwattfr/ntpserver"
+  ntp: "cloudwattfr/ntpserver"
 #  ntp: "alpine:3.10.5"
-  ntp: "alpine:3.10.6"
+#  ntp: "alpine:3.10.6"
   ldap: "bitnami/openldap:2.4.57"
